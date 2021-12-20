@@ -1,19 +1,22 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/providers/diets.dart';
-import 'package:mealime/screens/select_allergies_screen.dart';
+import 'package:mealime/screens/select_dislikes_screen.dart';
+import 'package:mealime/widgets/allergy_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
-import 'package:mealime/widgets/diet_card.dart';
 import 'package:provider/provider.dart';
 
-class SelectDietScreen extends StatelessWidget {
-  static const routeName = '/select-diet-screen';
-  const SelectDietScreen({Key? key}) : super(key: key);
+class SelectAllergiesScreen extends StatelessWidget {
+  static const routeName = '/select-allergies-screen';
+  const SelectAllergiesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final dietsData = Provider.of<Diets>(context).diets;
+    final allergiesData = Provider.of<Allergies>(context).allergies;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -48,17 +51,23 @@ class SelectDietScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                'Pick your diet',
+                'Any allergies?',
                 style: kTitleTextStyle,
               ),
             ),
-            Flexible(
-              child: ListView.builder(
-                itemBuilder: (context, index) => DietCard(
-                  diet: dietsData[index].diet,
-                  isSelected: dietsData[index].isSelected,
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1 / .5,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                 ),
-                itemCount: dietsData.length,
+                itemBuilder: (context, index) => AllergyCard(
+                  allergy: allergiesData[index].allergy,
+                  isSelected: allergiesData[index].isSelected,
+                ),
+                itemCount: allergiesData.length,
               ),
             ),
             Center(
@@ -68,7 +77,9 @@ class SelectDietScreen extends StatelessWidget {
                   buttonLabel: 'Continue',
                   click: () {
                     Navigator.pushNamed(
-                        context, SelectAllergiesScreen.routeName);
+                      context,
+                      SelectDislikesScreen.routeName,
+                    );
                   },
                 ),
               ),

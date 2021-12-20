@@ -21,8 +21,14 @@ const kBodyTextStyleGrey = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-const kBodyTextStyleBlack = TextStyle(
+const kBodyTextStylePrimary = TextStyle(
   color: kPrimaryColor,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);
+
+const kBodyTextStyleBlack = TextStyle(
+  color: Colors.black,
   fontSize: 16,
   fontWeight: FontWeight.bold,
 );

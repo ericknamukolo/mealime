@@ -34,7 +34,7 @@ class IntroScreen extends StatelessWidget {
               ),
               Text(
                 'Back',
-                style: kBodyTextStyleBlack,
+                style: kBodyTextStylePrimary,
               ),
             ],
           ),

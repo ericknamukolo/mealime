@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 
 class IntroScreenContent extends StatelessWidget {
@@ -26,7 +27,7 @@ class IntroScreenContent extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 40),
           height: 200,
-          color: Colors.grey,
+          color: kGreyishColor,
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 30),

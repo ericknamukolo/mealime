@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/providers/diets.dart';
-import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
-import 'package:mealime/widgets/diet_card.dart';
-import 'package:provider/provider.dart';
 
-class SelectDietScreen extends StatelessWidget {
-  static const routeName = '/select-diet-screen';
-  const SelectDietScreen({Key? key}) : super(key: key);
+class ServingsScreen extends StatelessWidget {
+  static const routeName = '/servings-screen';
+  const ServingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final dietsData = Provider.of<Diets>(context).diets;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -48,18 +43,12 @@ class SelectDietScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                'Pick your diet',
+                'How many servings per meal?',
                 style: kTitleTextStyle,
               ),
             ),
-            Flexible(
-              child: ListView.builder(
-                itemBuilder: (context, index) => DietCard(
-                  diet: dietsData[index].diet,
-                  isSelected: dietsData[index].isSelected,
-                ),
-                itemCount: dietsData.length,
-              ),
+            Expanded(
+              child: Container(),
             ),
             Center(
               child: Padding(
@@ -67,8 +56,7 @@ class SelectDietScreen extends StatelessWidget {
                 child: CustomButton(
                   buttonLabel: 'Continue',
                   click: () {
-                    Navigator.pushNamed(
-                        context, SelectAllergiesScreen.routeName);
+                    // Navigator.pushNamed(context, ServingsScreen.routeName);
                   },
                 ),
               ),
