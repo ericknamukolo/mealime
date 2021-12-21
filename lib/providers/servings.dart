@@ -11,8 +11,8 @@ class Servings with ChangeNotifier {
     Serving(
         description: 'for four, or two-three with left overs',
         numOfServing: 4,
-        id: '0'),
-    Serving(description: 'for a family of 5+', numOfServing: 6, id: '0'),
+        id: '1'),
+    Serving(description: 'for a family of 5+', numOfServing: 6, id: '2'),
   ];
   List<Serving> get servings {
     return [..._servings];

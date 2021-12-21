@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 
 class SignUpScreen extends StatelessWidget {
-  static const routeName = 'sign-up-screen';
+  static const routeName = '/sign-up-screen';
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -62,7 +63,9 @@ class SignUpScreen extends StatelessWidget {
             const SizedBox(height: 15),
             CustomButton(
               buttonLabel: 'Done',
-              click: () {},
+              click: () {
+                Navigator.of(context).pushNamed(HomeScreen.routeName);
+              },
               buttonWidth: double.infinity,
             ),
             const SizedBox(height: 15),

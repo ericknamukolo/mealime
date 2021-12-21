@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/providers/diets.dart';
 import 'package:mealime/providers/dislikes.dart';
+import 'package:mealime/providers/groceries.dart';
 import 'package:mealime/providers/servings.dart';
+import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
 import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/screens/select_diet_screen.dart';
@@ -27,6 +29,7 @@ class MeaLime extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Allergies()),
         ChangeNotifierProvider(create: (context) => Dislikes()),
         ChangeNotifierProvider(create: (context) => Servings()),
+        ChangeNotifierProvider(create: (context) => Groceries()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -44,6 +47,7 @@ class MeaLime extends StatelessWidget {
               const SelectDislikesScreen(),
           ServingsScreen.routeName: (context) => const ServingsScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
         },
       ),
     );
