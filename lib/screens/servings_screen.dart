@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/providers/servings.dart';
+import 'package:mealime/screens/sign_up_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
+import 'package:mealime/widgets/serving_card.dart';
+import 'package:provider/provider.dart';
 
 class ServingsScreen extends StatelessWidget {
   static const routeName = '/servings-screen';
@@ -9,6 +13,7 @@ class ServingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final servingsData = Provider.of<Servings>(context).servings;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -48,7 +53,15 @@ class ServingsScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(),
+              child: ListView.builder(
+                itemBuilder: (context, index) => ServingCard(
+                  description: servingsData[index].description,
+                  numberOfServings: servingsData[index].numOfServing,
+                  isSelected: servingsData[index].isSelected,
+                ),
+                itemCount: servingsData.length,
+                shrinkWrap: true,
+              ),
             ),
             Center(
               child: Padding(
@@ -56,7 +69,7 @@ class ServingsScreen extends StatelessWidget {
                 child: CustomButton(
                   buttonLabel: 'Continue',
                   click: () {
-                    // Navigator.pushNamed(context, ServingsScreen.routeName);
+                    Navigator.pushNamed(context, SignUpScreen.routeName);
                   },
                 ),
               ),

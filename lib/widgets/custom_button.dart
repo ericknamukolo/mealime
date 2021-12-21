@@ -5,10 +5,12 @@ import 'package:mealime/constants/constants.dart';
 class CustomButton extends StatelessWidget {
   final String buttonLabel;
   final Function() click;
+  final double? buttonWidth;
   const CustomButton({
     Key? key,
     required this.buttonLabel,
     required this.click,
+    this.buttonWidth = 150,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class CustomButton extends StatelessWidget {
       onTap: click,
       child: Container(
         height: 50,
-        width: 150,
+        width: buttonWidth,
         decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: BorderRadius.circular(5),
