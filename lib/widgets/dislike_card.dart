@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 
+// ignore: must_be_immutable
 class DislikeCard extends StatefulWidget {
   final String dislike;
   bool isSelected;

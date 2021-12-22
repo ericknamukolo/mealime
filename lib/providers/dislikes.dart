@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mealime/models/allergy.dart';
 import 'package:mealime/models/dislike.dart';
 
 class Dislikes with ChangeNotifier {

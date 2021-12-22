@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/allergies.dart';
-import 'package:mealime/providers/diets.dart';
 import 'package:mealime/screens/select_dislikes_screen.dart';
 import 'package:mealime/widgets/allergy_card.dart';
 import 'package:mealime/widgets/custom_button.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mealime/models/diet.dart';
 import 'package:mealime/models/serving.dart';
 
 class Servings with ChangeNotifier {

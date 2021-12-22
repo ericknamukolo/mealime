@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/screens/groceries_nav_screen.dart';
-import 'package:mealime/widgets/custom_button.dart';
 
 import 'meal_plan_nav_screen.dart';
 

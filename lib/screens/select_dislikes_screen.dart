@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/dislikes.dart';
-import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/screens/servings_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/dislike_card.dart';
