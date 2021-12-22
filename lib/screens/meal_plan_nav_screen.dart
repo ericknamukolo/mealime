@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 
 class MealPlanNavScreen extends StatelessWidget {
@@ -26,7 +27,9 @@ class MealPlanNavScreen extends StatelessWidget {
           const SizedBox(height: 20),
           CustomButton(
             buttonLabel: 'Build Your First Meal Plan',
-            click: () {},
+            click: () {
+              Navigator.of(context).pushNamed(MealPlanScreen.routeName);
+            },
             buttonWidth: double.infinity,
           ),
         ],

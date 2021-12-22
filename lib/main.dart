@@ -6,6 +6,7 @@ import 'package:mealime/providers/groceries.dart';
 import 'package:mealime/providers/servings.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
+import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/screens/select_diet_screen.dart';
 import 'package:mealime/screens/select_dislikes_screen.dart';
@@ -48,6 +49,7 @@ class MeaLime extends StatelessWidget {
           ServingsScreen.routeName: (context) => const ServingsScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
+          MealPlanScreen.routeName: (context) => const MealPlanScreen(),
         },
       ),
     );
