@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/allergies.dart';
-import 'package:mealime/screens/select_dislikes_screen.dart';
 import 'package:mealime/widgets/allergy_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
@@ -74,12 +73,7 @@ class SelectAllergiesScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: CustomButton(
                   buttonLabel: 'Continue',
-                  click: () {
-                    Navigator.pushNamed(
-                      context,
-                      SelectDislikesScreen.routeName,
-                    );
-                  },
+                  click: () {},
                 ),
               ),
             ),

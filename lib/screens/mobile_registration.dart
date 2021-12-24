@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/providers/servings.dart';
-import 'package:mealime/screens/sign_up_screen.dart';
+import 'package:mealime/screens/mobile_verification.dart';
 import 'package:mealime/widgets/custom_button.dart';
-import 'package:mealime/widgets/serving_card.dart';
-import 'package:provider/provider.dart';
 
-class ServingsScreen extends StatelessWidget {
-  static const routeName = '/servings-screen';
-  const ServingsScreen({Key? key}) : super(key: key);
+class MobileRegistration extends StatelessWidget {
+  static const routeName = '/mobile-registration-screen';
+  const MobileRegistration({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final servingsData = Provider.of<Servings>(context).servings;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -48,31 +44,33 @@ class ServingsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                'How many servings per meal?',
+                'Mobile registration',
                 style: kTitleTextStyle,
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => ServingCard(
-                  description: servingsData[index].description,
-                  numberOfServings: servingsData[index].numOfServing,
-                  isSelected: servingsData[index].isSelected,
-                ),
-                itemCount: servingsData.length,
-                shrinkWrap: true,
+            const Text(
+              'Enter your mobile number, you will receive a verification code to verify your number.',
+              style: kBodyTextStyleGrey,
+            ),
+            const SizedBox(height: 10),
+            const TextField(
+              style: kBodyTextStyleGrey,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                filled: true,
+                hintText: 'Mobile Number',
+                hintStyle: kBodyTextStyleGrey,
               ),
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
-                child: CustomButton(
-                  buttonLabel: 'Continue',
-                  click: () {
-                    Navigator.pushNamed(context, SignUpScreen.routeName);
-                  },
-                ),
-              ),
+            const SizedBox(height: 15),
+            CustomButton(
+              buttonLabel: 'Continue',
+              click: () {
+                Navigator.pushNamed(
+                    context, MobileVerificationScreen.routeName);
+              },
+              buttonWidth: double.infinity,
             ),
           ],
         ),

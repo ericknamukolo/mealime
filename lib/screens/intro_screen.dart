@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/screens/select_diet_screen.dart';
+import 'package:mealime/screens/mobile_registration.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/intro_screen_content.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -84,7 +84,7 @@ class IntroScreen extends StatelessWidget {
                 CustomButton(
                   buttonLabel: 'Continue',
                   click: () {
-                    Navigator.pushNamed(context, SelectDietScreen.routeName);
+                    Navigator.pushNamed(context, MobileRegistration.routeName);
                   },
                 ),
               ],

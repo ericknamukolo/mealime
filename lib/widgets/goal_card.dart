@@ -3,23 +3,25 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/providers/goals.dart';
+import 'package:provider/provider.dart';
 
-class ServingCard extends StatefulWidget {
-  final int numberOfServings;
+class GoalCard extends StatefulWidget {
   final String description;
+  final String goal;
   bool isSelected;
-  ServingCard({
+  GoalCard({
     required this.description,
-    required this.numberOfServings,
+    required this.goal,
     required this.isSelected,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ServingCard> createState() => _ServingCardState();
+  State<GoalCard> createState() => _GoalCardState();
 }
 
-class _ServingCardState extends State<ServingCard> {
+class _GoalCardState extends State<GoalCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,8 +43,7 @@ class _ServingCardState extends State<ServingCard> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('${widget.numberOfServings} servings',
-                style: kBodyTextStyleBlack),
+            Text(widget.goal, style: kBodyTextStyleBlack),
             Text(
               widget.description,
               style: kBodyTextStyleBlack.copyWith(

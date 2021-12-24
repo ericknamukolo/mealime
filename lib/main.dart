@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/providers/allergies.dart';
-import 'package:mealime/providers/diets.dart';
-import 'package:mealime/providers/dislikes.dart';
 import 'package:mealime/providers/groceries.dart';
-import 'package:mealime/providers/servings.dart';
+import 'package:mealime/providers/meals.dart';
+import 'package:mealime/providers/goals.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
+import 'package:mealime/screens/meal_plan_details_screen.dart';
 import 'package:mealime/screens/meal_plan_screen.dart';
+import 'package:mealime/screens/mobile_verification.dart';
 import 'package:mealime/screens/select_allergies_screen.dart';
-import 'package:mealime/screens/select_diet_screen.dart';
-import 'package:mealime/screens/select_dislikes_screen.dart';
-import 'package:mealime/screens/servings_screen.dart';
+import 'package:mealime/screens/mobile_registration.dart';
+import 'package:mealime/screens/goals_screen.dart';
 import 'package:mealime/screens/sign_up_screen.dart';
 import 'package:mealime/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
@@ -26,11 +26,10 @@ class MeaLime extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Diets()),
         ChangeNotifierProvider(create: (context) => Allergies()),
-        ChangeNotifierProvider(create: (context) => Dislikes()),
-        ChangeNotifierProvider(create: (context) => Servings()),
+        ChangeNotifierProvider(create: (context) => Goals()),
         ChangeNotifierProvider(create: (context) => Groceries()),
+        ChangeNotifierProvider(create: (context) => Meals()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -41,15 +40,17 @@ class MeaLime extends StatelessWidget {
         routes: {
           WelcomeScreen.routeName: (context) => const WelcomeScreen(),
           IntroScreen.routeName: (context) => const IntroScreen(),
-          SelectDietScreen.routeName: (context) => const SelectDietScreen(),
+          MobileRegistration.routeName: (context) => const MobileRegistration(),
           SelectAllergiesScreen.routeName: (context) =>
               const SelectAllergiesScreen(),
-          SelectDislikesScreen.routeName: (context) =>
-              const SelectDislikesScreen(),
-          ServingsScreen.routeName: (context) => const ServingsScreen(),
+          GoalsScreen.routeName: (context) => const GoalsScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
           MealPlanScreen.routeName: (context) => const MealPlanScreen(),
+          MealPlanDetailsScreen.routeName: (context) =>
+              const MealPlanDetailsScreen(),
+          MobileVerificationScreen.routeName: (context) =>
+              const MobileVerificationScreen(),
         },
       ),
     );

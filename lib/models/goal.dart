@@ -1,12 +1,13 @@
-class Serving {
+class Goal {
   final String id;
+  final String goal;
   final String description;
-  final int numOfServing;
-  final bool isSelected;
 
-  Serving({
+  bool isSelected;
+
+  Goal({
     required this.description,
-    required this.numOfServing,
+    required this.goal,
     required this.id,
     this.isSelected = false,
   });
