@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/screens/personal_details_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -92,8 +93,7 @@ class MobileVerificationScreen extends StatelessWidget {
             CustomButton(
               buttonLabel: 'Verify',
               click: () {
-                // Navigator.pushNamed(
-                //     context, MobileVerificationScreen.routeName);
+                Navigator.pushNamed(context, PersonalDetailsScreen.routeName);
               },
               buttonWidth: double.infinity,
             ),

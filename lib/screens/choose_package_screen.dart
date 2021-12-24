@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/screens/mobile_verification.dart';
-import 'package:mealime/widgets/custom_button.dart';
-import 'package:mealime/widgets/input_field.dart';
 
-class MobileRegistration extends StatelessWidget {
-  static const routeName = '/mobile-registration-screen';
-  const MobileRegistration({Key? key}) : super(key: key);
+class ChoosePackageScreen extends StatelessWidget {
+  static const routeName = '/choose-package-screen';
+  const ChoosePackageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,31 +37,13 @@ class MobileRegistration extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
+          children: const [
+            Padding(
               padding: EdgeInsets.only(top: 5),
               child: Text(
-                'Mobile registration',
+                'Choose Package',
                 style: kTitleTextStyle,
               ),
-            ),
-            const Text(
-              'Enter your mobile number, you will receive a verification code to verify your number.',
-              style: kBodyTextStyleGrey,
-            ),
-            const SizedBox(height: 10),
-            const InputField(
-              hint: 'Mobile Number',
-            ),
-            const SizedBox(height: 15),
-            CustomButton(
-              buttonLabel: 'Continue',
-              click: () {
-                Navigator.pushNamed(
-                    context, MobileVerificationScreen.routeName);
-              },
-              buttonWidth: double.infinity,
             ),
           ],
         ),

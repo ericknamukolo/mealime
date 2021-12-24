@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/goals.dart';
-import 'package:mealime/screens/sign_up_screen.dart';
+import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/goal_card.dart';
 import 'package:provider/provider.dart';
 
 class GoalsScreen extends StatelessWidget {
-  static const routeName = '/servings-screen';
+  static const routeName = '/goals-screen';
   const GoalsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final servingsData = Provider.of<Goals>(context).goals;
+    final goalsData = Provider.of<Goals>(context).goals;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -55,11 +55,11 @@ class GoalsScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) => GoalCard(
-                  description: servingsData[index].description,
-                  isSelected: servingsData[index].isSelected,
-                  goal: servingsData[index].goal,
-                ),
-                itemCount: servingsData.length,
+                    description: goalsData[index].description,
+                    isSelected: goalsData[index].isSelected,
+                    goal: goalsData[index].goal,
+                    id: goalsData[index].id),
+                itemCount: goalsData.length,
                 shrinkWrap: true,
               ),
             ),
@@ -69,7 +69,8 @@ class GoalsScreen extends StatelessWidget {
                 child: CustomButton(
                   buttonLabel: 'Continue',
                   click: () {
-                    Navigator.pushNamed(context, SignUpScreen.routeName);
+                    Navigator.pushNamed(
+                        context, SelectAllergiesScreen.routeName);
                   },
                 ),
               ),

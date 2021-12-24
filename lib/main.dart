@@ -3,15 +3,16 @@ import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/providers/groceries.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/providers/goals.dart';
+import 'package:mealime/screens/choose_package_screen.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
 import 'package:mealime/screens/meal_plan_details_screen.dart';
 import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/screens/mobile_verification.dart';
+import 'package:mealime/screens/personal_details_screen.dart';
 import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/screens/mobile_registration.dart';
 import 'package:mealime/screens/goals_screen.dart';
-import 'package:mealime/screens/sign_up_screen.dart';
 import 'package:mealime/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -44,13 +45,16 @@ class MeaLime extends StatelessWidget {
           SelectAllergiesScreen.routeName: (context) =>
               const SelectAllergiesScreen(),
           GoalsScreen.routeName: (context) => const GoalsScreen(),
-          SignUpScreen.routeName: (context) => const SignUpScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
           MealPlanScreen.routeName: (context) => const MealPlanScreen(),
           MealPlanDetailsScreen.routeName: (context) =>
               const MealPlanDetailsScreen(),
           MobileVerificationScreen.routeName: (context) =>
               const MobileVerificationScreen(),
+          PersonalDetailsScreen.routeName: (context) =>
+              const PersonalDetailsScreen(),
+          ChoosePackageScreen.routeName: (context) =>
+              const ChoosePackageScreen(),
         },
       ),
     );

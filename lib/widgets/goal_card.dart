@@ -7,11 +7,13 @@ import 'package:mealime/providers/goals.dart';
 import 'package:provider/provider.dart';
 
 class GoalCard extends StatefulWidget {
+  final String id;
   final String description;
   final String goal;
   bool isSelected;
   GoalCard({
     required this.description,
+    required this.id,
     required this.goal,
     required this.isSelected,
     Key? key,
@@ -27,7 +29,7 @@ class _GoalCardState extends State<GoalCard> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          widget.isSelected = !widget.isSelected;
+          Provider.of<Goals>(context, listen: false).selectItem(widget.id);
         });
       },
       child: Container(
@@ -47,9 +49,7 @@ class _GoalCardState extends State<GoalCard> {
             Text(
               widget.description,
               style: kBodyTextStyleBlack.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.normal,
-              ),
+                  fontSize: 15, fontWeight: FontWeight.normal),
             ),
           ],
         ),
