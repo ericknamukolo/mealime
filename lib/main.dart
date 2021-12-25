@@ -3,6 +3,7 @@ import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/providers/groceries.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/providers/goals.dart';
+import 'package:mealime/providers/package_packs.dart';
 import 'package:mealime/screens/choose_package_screen.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
@@ -31,6 +32,7 @@ class MeaLime extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Goals()),
         ChangeNotifierProvider(create: (context) => Groceries()),
         ChangeNotifierProvider(create: (context) => Meals()),
+        ChangeNotifierProvider(create: (context) => Packages()),
       ],
       child: MaterialApp(
         theme: ThemeData(
