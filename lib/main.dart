@@ -39,7 +39,6 @@ class MeaLime extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Catamaran',
         ),
-        home: Container(),
         initialRoute: WelcomeScreen.routeName,
         routes: {
           WelcomeScreen.routeName: (context) => const WelcomeScreen(),

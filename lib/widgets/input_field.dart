@@ -12,15 +12,22 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
-      child: TextField(
-        style: kBodyTextStyleGrey,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          filled: true,
-          hintText: hint,
-          hintStyle: kBodyTextStyleGrey,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(hint, style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
+          TextField(
+            style: kBodyTextStyleGrey,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              alignLabelWithHint: true,
+              border: InputBorder.none,
+              filled: true,
+              hintText: hint,
+              hintStyle: kBodyTextStyleGrey,
+            ),
+          ),
+        ],
       ),
     );
   }
