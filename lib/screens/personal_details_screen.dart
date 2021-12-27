@@ -1,14 +1,17 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/screens/goals_screen.dart';
+import 'package:mealime/screens/select_allergies_screen.dart';
+import 'package:mealime/widgets/bmi_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/gender_card.dart';
+import 'package:mealime/widgets/goal_card.dart';
 import 'package:mealime/widgets/input_field.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
@@ -20,15 +23,32 @@ class PersonalDetailsScreen extends StatefulWidget {
 }
 
 class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
-  bool male = false;
+  bool male = true;
   bool female = false;
+  bool _gain = true;
+  bool _maintain = false;
+  bool _lose = false;
   double _weight = 50;
   double _height = 180;
   double _actualWeight = 50;
   double _actualHeight = 180;
+  double _bmi = 18.5;
 
   @override
   Widget build(BuildContext context) {
+    String bmiStatus() {
+      if (_bmi < 18.5) {
+        return 'UNDERWEIGHT';
+      } else if (_bmi >= 18.5 && _bmi <= 24.9) {
+        return 'NORMAL';
+      } else if (_bmi >= 25.0 && _bmi <= 29.9) {
+        return 'OVERWEIGHT';
+      } else if (_bmi >= 30.0) {
+        return 'OBESE';
+      }
+      return '';
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -84,8 +104,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         if (male == false) {
                           male = true;
                           female = false;
-                        } else {
-                          male = false;
                         }
                       });
                     },
@@ -106,8 +124,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         if (female == false) {
                           male = false;
                           female = true;
-                        } else {
-                          female = false;
                         }
                       });
                     },
@@ -220,6 +236,8 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                                 setState(() {
                                   _actualHeight = _height;
                                   _actualWeight = _weight;
+                                  double heightM = _actualHeight / 100;
+                                  _bmi = _actualWeight / (heightM * heightM);
                                 });
                               });
                             },
@@ -234,23 +252,78 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   ],
                 ),
               ),
-              const InputField(
-                hint: 'Email Address',
+              BMICard(
+                bmi: _bmi,
+                status: bmiStatus(),
               ),
               const InputField(
-                hint: 'Province',
+                hint: 'Birthday',
               ),
               const InputField(
                 hint: 'Physical address',
+              ),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Goal', style: kTitleTextStyle)),
+              SizedBox(
+                height: 70,
+                child: ListView(
+                  children: [
+                    GoalCard(
+                      goal: 'Gain weight',
+                      icon: Icons.upload_rounded,
+                      isSelected: _gain,
+                      range: '2000 - 2500',
+                      click: () {
+                        setState(() {
+                          if (_gain == false) {
+                            _gain = true;
+                            _maintain = false;
+                            _lose = false;
+                          }
+                        });
+                      },
+                    ),
+                    GoalCard(
+                      goal: 'Maintain weight',
+                      icon: Icons.linear_scale_outlined,
+                      isSelected: _maintain,
+                      range: '1500 - 1900',
+                      click: () {
+                        setState(() {
+                          if (_maintain == false) {
+                            _maintain = true;
+                            _gain = false;
+                            _lose = false;
+                          }
+                        });
+                      },
+                    ),
+                    GoalCard(
+                      goal: 'Lose weight',
+                      icon: Icons.download_rounded,
+                      isSelected: _lose,
+                      range: '1000 - 1400',
+                      click: () {
+                        setState(() {
+                          if (_lose == false) {
+                            _lose = true;
+                            _gain = false;
+                            _maintain = false;
+                          }
+                        });
+                      },
+                    ),
+                  ],
+                  scrollDirection: Axis.horizontal,
+                ),
               ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30),
                   child: CustomButton(
                     buttonLabel: 'Save',
-                    click: () {
-                      Navigator.of(context).pushNamed(GoalsScreen.routeName);
-                    },
+                    click: () {},
                   ),
                 ),
               ),

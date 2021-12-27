@@ -38,6 +38,7 @@ dependencies:
   pin_code_fields: ^7.3.0
   syncfusion_flutter_sliders: ^19.4.38
   google_fonts: ^2.1.1
+  percent_indicator: ^3.4.0
 
 dev_dependencies:
   flutter_test:
