@@ -17,7 +17,7 @@ const kBodyTextStyleWhite = TextStyle(
 
 const kBodyTextStyleGrey = TextStyle(
   color: Color(0xffB4B4B4),
-  fontSize: 16,
+  fontSize: 15,
   fontWeight: FontWeight.w500,
 );
 

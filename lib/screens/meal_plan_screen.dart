@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/widgets/meal_item.dart';

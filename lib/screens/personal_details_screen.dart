@@ -1,17 +1,17 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/screens/select_allergies_screen.dart';
+import 'package:mealime/providers/allergies.dart';
+import 'package:mealime/widgets/allergy_card.dart';
 import 'package:mealime/widgets/bmi_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
+import 'package:mealime/widgets/doctor_card.dart';
 import 'package:mealime/widgets/gender_card.dart';
 import 'package:mealime/widgets/goal_card.dart';
 import 'package:mealime/widgets/input_field.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
@@ -33,9 +33,11 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
   double _actualWeight = 50;
   double _actualHeight = 180;
   double _bmi = 18.5;
+  DateTime _dateOfBirth = DateTime(2000);
 
   @override
   Widget build(BuildContext context) {
+    final allergiesData = Provider.of<Allergies>(context).allergies;
     String bmiStatus() {
       if (_bmi < 18.5) {
         return 'UNDERWEIGHT';
@@ -256,8 +258,51 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                 bmi: _bmi,
                 status: bmiStatus(),
               ),
-              const InputField(
-                hint: 'Birthday',
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Date of birth',
+                        style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      height: 50,
+                      width: double.infinity,
+                      color: kGreyishColor,
+                      // alignment: Alignment.centerLeft,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${_dateOfBirth.day}/${_dateOfBirth.month}/${_dateOfBirth.year}',
+                            style: kBodyTextStylePrimary.copyWith(fontSize: 18),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              DateTime? _newDate = await showDatePicker(
+                                context: context,
+                                initialDate: _dateOfBirth,
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2010),
+                              );
+                              if (_newDate != null) {
+                                setState(() {
+                                  _dateOfBirth = _newDate;
+                                });
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.arrow_drop_down_circle_outlined,
+                              color: kPrimaryColor,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const InputField(
                 hint: 'Physical address',
@@ -318,9 +363,81 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   scrollDirection: Axis.horizontal,
                 ),
               ),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Health', style: kTitleTextStyle)),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Allergies', style: kBodyTextStyleGrey)),
+              Container(
+                height: 210,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1 / .5,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                  ),
+                  itemBuilder: (context, index) => AllergyCard(
+                    allergy: allergiesData[index].allergy,
+                    isSelected: allergiesData[index].isSelected,
+                  ),
+                  itemCount: allergiesData.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Dislikes', style: kBodyTextStyleGrey)),
+              Container(
+                height: 210,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1 / .5,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                  ),
+                  itemBuilder: (context, index) => AllergyCard(
+                    allergy: allergiesData[index].allergy,
+                    isSelected: allergiesData[index].isSelected,
+                  ),
+                  itemCount: allergiesData.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Can\'t decide?',
+                  style: kBodyTextStyleBlack,
+                ),
+              ),
+              const Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                style: kBodyTextStyleGrey,
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                height: 300,
+                width: double.infinity,
+                child: Row(
+                  children: const [
+                    Expanded(
+                      child: DoctorCard(),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: DoctorCard(),
+                    ),
+                  ],
+                ),
+              ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  padding: const EdgeInsets.only(bottom: 30),
                   child: CustomButton(
                     buttonLabel: 'Save',
                     click: () {},
