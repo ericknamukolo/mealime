@@ -23,8 +23,8 @@ class GoalCard extends StatelessWidget {
       onTap: click,
       child: Container(
         margin: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
-        height: 60,
-        width: 150,
+        height: 100,
+        width: 120,
         decoration: BoxDecoration(
           color: isSelected ? kAccentColor : kGreyishColor,
           borderRadius: BorderRadius.circular(10.0),
@@ -38,30 +38,25 @@ class GoalCard extends StatelessWidget {
             )
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
-              size: 35,
+              size: 30,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  goal,
-                  style: kBodyTextStyleBlack.copyWith(fontSize: 14),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  '$range kCal',
-                  style: kNumberTextStyle.copyWith(
-                    fontSize: 10,
-                    fontWeight: FontWeight.normal,
-                    color: kPrimaryColor,
-                  ),
-                ),
-              ],
+            Text(
+              goal,
+              style: kBodyTextStyleBlack.copyWith(fontSize: 14),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              '$range kCal',
+              style: kNumberTextStyle.copyWith(
+                fontSize: 10,
+                fontWeight: FontWeight.normal,
+                color: kPrimaryColor,
+              ),
             ),
           ],
         ),

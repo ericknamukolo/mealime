@@ -10,6 +10,7 @@ import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/doctor_card.dart';
 import 'package:mealime/widgets/gender_card.dart';
 import 'package:mealime/widgets/goal_card.dart';
+import 'package:mealime/widgets/health_button.dart';
 import 'package:mealime/widgets/input_field.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -37,7 +38,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final allergiesData = Provider.of<Allergies>(context).allergies;
     String bmiStatus() {
       if (_bmi < 18.5) {
         return 'UNDERWEIGHT';
@@ -81,6 +81,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 5),
@@ -131,9 +132,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     },
                   ),
                 ],
-              ),
-              const InputField(
-                hint: 'Full Name',
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 5),
@@ -304,14 +302,11 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   ],
                 ),
               ),
-              const InputField(
-                hint: 'Physical address',
-              ),
               const Align(
                   alignment: Alignment.centerLeft,
                   child: Text('Goal', style: kTitleTextStyle)),
               SizedBox(
-                height: 70,
+                height: 105,
                 child: ListView(
                   children: [
                     GoalCard(
@@ -368,42 +363,24 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   child: Text('Health', style: kTitleTextStyle)),
               const Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Allergies', style: kBodyTextStyleGrey)),
+                  child:
+                      Text('Allergies & Dislikes', style: kBodyTextStyleGrey)),
               Container(
-                height: 210,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1 / .5,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
-                  ),
-                  itemBuilder: (context, index) => AllergyCard(
-                    allergy: allergiesData[index].allergy,
-                    isSelected: allergiesData[index].isSelected,
-                  ),
-                  itemCount: allergiesData.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                ),
-              ),
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Dislikes', style: kBodyTextStyleGrey)),
-              Container(
-                height: 210,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1 / .5,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
-                  ),
-                  itemBuilder: (context, index) => AllergyCard(
-                    allergy: allergiesData[index].allergy,
-                    isSelected: allergiesData[index].isSelected,
-                  ),
-                  itemCount: allergiesData.length,
-                  physics: const NeverScrollableScrollPhysics(),
+                height: 75,
+                child: Row(
+                  children: const [
+                    Expanded(
+                      child: HealthButton(
+                        text: 'Allergies',
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: HealthButton(
+                        text: 'Dislikes',
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const Align(
@@ -441,6 +418,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   child: CustomButton(
                     buttonLabel: 'Save',
                     click: () {},
+                    buttonWidth: double.infinity,
                   ),
                 ),
               ),
