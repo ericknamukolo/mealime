@@ -5,10 +5,20 @@ import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/input_field.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   static const routeName = '/payment-screen';
   const PaymentScreen({Key? key}) : super(key: key);
 
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool isCvvFocused = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

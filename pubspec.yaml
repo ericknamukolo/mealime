@@ -39,6 +39,8 @@ dependencies:
   syncfusion_flutter_sliders: ^19.4.38
   google_fonts: ^2.1.1
   percent_indicator: ^3.4.0
+  material_design_icons_flutter: ^5.0.6595
+  flutter_credit_card: ^3.0.1
 
 dev_dependencies:
   flutter_test:
