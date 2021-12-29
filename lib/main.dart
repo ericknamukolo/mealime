@@ -11,7 +11,6 @@ import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/screens/mobile_verification.dart';
 import 'package:mealime/screens/payment_screen.dart';
 import 'package:mealime/screens/personal_details_screen.dart';
-import 'package:mealime/screens/select_allergies_screen.dart';
 import 'package:mealime/screens/mobile_registration.dart';
 import 'package:mealime/screens/signup_screen.dart';
 import 'package:mealime/screens/welcome_screen.dart';
@@ -42,8 +41,6 @@ class MeaLime extends StatelessWidget {
           WelcomeScreen.routeName: (context) => const WelcomeScreen(),
           IntroScreen.routeName: (context) => const IntroScreen(),
           MobileRegistration.routeName: (context) => const MobileRegistration(),
-          SelectAllergiesScreen.routeName: (context) =>
-              const SelectAllergiesScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
           MealPlanScreen.routeName: (context) => const MealPlanScreen(),
           MealPlanDetailsScreen.routeName: (context) =>

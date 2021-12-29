@@ -3,18 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/screens/choose_package_screen.dart';
-import 'package:mealime/screens/meal_plan_screen.dart';
-import 'package:mealime/widgets/allergy_card.dart';
+
 import 'package:mealime/widgets/bmi_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/doctor_card.dart';
 import 'package:mealime/widgets/gender_card.dart';
 import 'package:mealime/widgets/goal_card.dart';
 import 'package:mealime/widgets/health_button.dart';
-import 'package:mealime/widgets/input_field.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
@@ -154,7 +150,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         children: [
                           Text(
                             '${_actualWeight.toStringAsFixed(1)} kg -- ${_actualHeight.toStringAsFixed(1)} cm',
-                            style: kBodyTextStylePrimary.copyWith(fontSize: 18),
+                            style: kBodyTextStylePrimary.copyWith(fontSize: 16),
                           ),
                           IconButton(
                             onPressed: () {
@@ -277,7 +273,7 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                         children: [
                           Text(
                             '${_dateOfBirth.day}/${_dateOfBirth.month}/${_dateOfBirth.year}',
-                            style: kBodyTextStylePrimary.copyWith(fontSize: 18),
+                            style: kBodyTextStylePrimary.copyWith(fontSize: 16),
                           ),
                           IconButton(
                             onPressed: () async {
