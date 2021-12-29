@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/allergies.dart';
+import 'package:mealime/screens/choose_package_screen.dart';
+import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/widgets/allergy_card.dart';
 import 'package:mealime/widgets/bmi_card.dart';
 import 'package:mealime/widgets/custom_button.dart';
@@ -417,7 +419,10 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                   padding: const EdgeInsets.only(bottom: 30),
                   child: CustomButton(
                     buttonLabel: 'Save',
-                    click: () {},
+                    click: () {
+                      Navigator.of(context)
+                          .pushNamed(ChoosePackageScreen.routeName);
+                    },
                     buttonWidth: double.infinity,
                   ),
                 ),

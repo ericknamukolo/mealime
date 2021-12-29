@@ -35,7 +35,7 @@ class BMICard extends StatelessWidget {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
           decoration: BoxDecoration(
-            color: kGreyishColor,
+            color: Colors.white70, // kGreyishColor,
             borderRadius: BorderRadius.circular(10.0),
             boxShadow: [
               BoxShadow(
