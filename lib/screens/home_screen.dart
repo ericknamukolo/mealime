@@ -4,6 +4,7 @@ import 'package:mealime/constants/constants.dart';
 import 'package:mealime/screens/groceries_nav_screen.dart';
 
 import 'meal_plan_nav_screen.dart';
+import 'meal_plan_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final tabs = const [
-    MealPlanNavScreen(),
+    MealPlanScreen(),
     GroceriesNavScreen(),
     Center(child: Text('Favorites')),
     Center(child: Text('Settings')),

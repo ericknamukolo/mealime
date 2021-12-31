@@ -30,9 +30,7 @@ class MealPackageCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: [
             BoxShadow(
-              color: isSelected
-                  ? const Color(0xff000000).withOpacity(0.12)
-                  : Colors.transparent,
+              color: const Color(0xff000000).withOpacity(0.12),
               blurRadius: 6.0,
               offset: const Offset(0.0, 3.0),
             )
