@@ -1,6 +1,7 @@
 class Meal {
   final String id;
   final String title;
+  bool isSelected;
   final int duration;
   final String imgPath;
   final int servings;
@@ -14,5 +15,6 @@ class Meal {
     required this.servings,
     required this.ingredients,
     required this.instructions,
+    this.isSelected = false,
   });
 }

@@ -72,7 +72,17 @@ class Meals with ChangeNotifier {
       ],
     ),
   ];
-  List<Meal> get meals {
+
+  List<Meal> get breakfastMeals {
     return [..._meals];
   }
+
+  void selectMeal(String id) {
+    var bf = _meals.firstWhere((meal) => meal.id == id);
+    bf.isSelected = true;
+    selectedMeals.add(bf);
+    notifyListeners();
+  }
+
+  List<Meal> selectedMeals = [];
 }
