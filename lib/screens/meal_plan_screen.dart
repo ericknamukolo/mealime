@@ -50,36 +50,8 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
       return 'Breakfast';
     }
 
+    print(Provider.of<Meals>(context).selectedMeals.length);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.close,
-            color: Colors.black,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-          ),
-        ],
-        title: const Center(
-          child: Text(
-            'Build a meal plan',
-            style: kBodyTextStyleBlack,
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),

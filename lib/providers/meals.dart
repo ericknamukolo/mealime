@@ -84,13 +84,17 @@ class Meals with ChangeNotifier {
     return [..._meals];
   }
 
-  int pageNumber = 0;
   void selectMeal(String id) {
-    var bf = _meals.firstWhere((meal) => meal.id == id);
-    bf.isSelected = true;
-    selectedMeals.add(bf);
-    if (pageNumber < 4) {
-      pageNumber++;
+    var pickedMeal = _meals.firstWhere((meal) => meal.id == id);
+
+    if (selectedMeals.where((meal) => meal.breakFast == true).toList().length <=
+            1 ||
+        selectedMeals.where((meal) => meal.lunch == true).toList().length <=
+            1 ||
+        selectedMeals.where((meal) => meal.supper == true).toList().length <=
+            1) {
+      pickedMeal.isSelected = true;
+      selectedMeals.add(pickedMeal);
     }
 
     notifyListeners();

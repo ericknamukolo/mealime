@@ -32,7 +32,7 @@ class CurrentDayCard extends StatelessWidget {
       child: Text(
         '$day',
         style: kNumberTextStyle.copyWith(
-            fontSize: 18,
+            fontSize: 15,
             color: isSelected ? kPrimaryColor : const Color(0xffB4B4B4)),
       ),
       alignment: Alignment.center,
