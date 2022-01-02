@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final String id;
   final String title;
   final String imgPath;
+
   bool isSelected;
   MealItem({
     Key? key,

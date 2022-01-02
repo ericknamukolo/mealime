@@ -9,6 +9,7 @@ class LunchMealsSection extends StatelessWidget {
   }) : super(key: key);
 
   final List<Meal> mealsData;
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(

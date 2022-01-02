@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/models/meal.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/widgets/breakfastmeals_section.dart';
 import 'package:mealime/widgets/current_day.dart';
 import 'package:mealime/widgets/lunchmeals_section.dart';
-import 'package:mealime/widgets/meal_card.dart';
-import 'package:mealime/widgets/meal_item.dart';
+
 import 'package:mealime/widgets/suppermeals_section.dart';
 import 'package:mealime/widgets/type_of_meal.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +26,19 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
   Widget build(BuildContext context) {
     final PageController _pageController =
         PageController(initialPage: _pageIndex);
-    final mealsData = Provider.of<Meals>(context).breakfastMeals;
+    final breakfastMealsData = Provider.of<Meals>(context)
+        .meals
+        .where((meal) => meal.breakFast == true)
+        .toList();
+    final lunchMealsData = Provider.of<Meals>(context)
+        .meals
+        .where((meal) => meal.lunch == true)
+        .toList();
+    final supperMealsData = Provider.of<Meals>(context)
+        .meals
+        .where((meal) => meal.supper == true)
+        .toList();
+
     String categoryText() {
       if (_pageIndex == 0) {
         return 'Breakfast';
@@ -190,9 +200,9 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                     });
                   },
                   children: [
-                    BreakFastMealsSection(mealsData: mealsData),
-                    LunchMealsSection(mealsData: mealsData),
-                    SupperMealsSection(mealsData: mealsData),
+                    BreakFastMealsSection(mealsData: breakfastMealsData),
+                    LunchMealsSection(mealsData: lunchMealsData),
+                    SupperMealsSection(mealsData: supperMealsData),
                   ],
                 ),
               ),

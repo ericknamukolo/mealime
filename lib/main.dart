@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:mealime/providers/allergies.dart';
 import 'package:mealime/providers/groceries.dart';
@@ -33,6 +34,8 @@ class MeaLime extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Packages()),
       ],
       child: MaterialApp(
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
           fontFamily: 'Catamaran',
         ),
