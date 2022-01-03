@@ -3,8 +3,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/screens/groceries_nav_screen.dart';
-
-import 'meal_plan_nav_screen.dart';
 import 'meal_plan_screen.dart';
 
 class HomeScreen extends StatefulWidget {

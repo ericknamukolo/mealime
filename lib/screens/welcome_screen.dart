@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
+import 'package:mealime/screens/meal_plan_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -14,9 +16,14 @@ class WelcomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(),
-          Text(
-            'MeaLime',
-            style: kTitleTextStyle.copyWith(fontSize: 40),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, HomeScreen.routeName);
+            },
+            child: Text(
+              'MeaLime',
+              style: kTitleTextStyle.copyWith(fontSize: 40),
+            ),
           ),
           Column(
             children: [

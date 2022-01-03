@@ -85,22 +85,29 @@ class Meals with ChangeNotifier {
   }
 
   int pageNumber = 0;
-  void selectMeal(String id) {
+  Future<void> selectMeal(String id, List<Meal> meal) async {
     var pickedMeal = _meals.firstWhere((meal) => meal.id == id);
 
-    if (selectedMeals.where((meal) => meal.breakFast == true).toList().length <=
-            1 ||
-        selectedMeals.where((meal) => meal.lunch == true).toList().length <=
-            1 ||
-        selectedMeals.where((meal) => meal.supper == true).toList().length <=
-            1) {
+    if (meal.isEmpty) {
       pickedMeal.isSelected = true;
-      pageNumber++;
-      selectedMeals.add(pickedMeal);
+      meal.add(pickedMeal);
+    } else {
+      throw Exception('A meal (${meal[0].title}) has already been picked');
     }
-
     notifyListeners();
   }
 
-  List<Meal> selectedMeals = [];
+  void removeMeals() {
+    for (var meal in _meals) {
+      meal.isSelected = false;
+    }
+    breakfastMeal.clear();
+    lunchMeal.clear();
+    supperMeal.clear();
+    notifyListeners();
+  }
+
+  List<Meal> breakfastMeal = [];
+  List<Meal> lunchMeal = [];
+  List<Meal> supperMeal = [];
 }

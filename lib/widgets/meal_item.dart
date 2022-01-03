@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/meals.dart';
-import 'package:mealime/screens/meal_plan_details_screen.dart';
 import 'package:provider/provider.dart';
 
 class MealItem extends StatelessWidget {
   final String id;
   final String title;
   final String imgPath;
+  final Function() click;
 
   bool isSelected;
   MealItem({
@@ -17,6 +17,7 @@ class MealItem extends StatelessWidget {
     required this.title,
     required this.imgPath,
     required this.isSelected,
+    required this.click,
   }) : super(key: key);
 
   @override
@@ -44,10 +45,15 @@ class MealItem extends StatelessWidget {
                     top: 10,
                     right: 10,
                     child: GestureDetector(
-                      onTap: () {
-                        Provider.of<Meals>(context, listen: false)
-                            .selectMeal(id);
-                      },
+                      onTap: click,
+                      // onTap: () {
+                      //   try {
+                      //     Provider.of<Meals>(context, listen: false)
+                      //         .selectMeal(id);
+                      //   } catch (e) {
+                      //     print(e);
+                      //   }
+                      // },
                       child: CircleAvatar(
                         backgroundColor:
                             isSelected ? kPrimaryColor : Colors.white,

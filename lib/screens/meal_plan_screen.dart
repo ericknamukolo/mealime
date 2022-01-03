@@ -5,6 +5,7 @@ import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/widgets/breakfastmeals_section.dart';
 import 'package:mealime/widgets/current_day.dart';
+import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/lunchmeals_section.dart';
 
 import 'package:mealime/widgets/suppermeals_section.dart';
@@ -50,6 +51,78 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
       return 'Breakfast';
     }
 
+    WidgetsBinding.instance!.addPostFrameCallback(
+      (_) {
+        // Add Your Code here.
+        var bf = Provider.of<Meals>(context, listen: false).breakfastMeal;
+        var lunch = Provider.of<Meals>(context, listen: false).lunchMeal;
+        var supper = Provider.of<Meals>(context, listen: false).supperMeal;
+
+        if (bf.isNotEmpty && lunch.isNotEmpty && supper.isNotEmpty) {
+          showModalBottomSheet(
+            enableDrag: false,
+            isDismissible: false,
+            context: context,
+            builder: (context) {
+              return WillPopScope(
+                onWillPop: () async {
+                  return false;
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Meals', style: kTitleTextStyle),
+                      Container(
+                        height: 160,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: PickedMealCard(
+                                imgPath: bf[0].imgPath,
+                                meal: bf[0].title,
+                              ),
+                            ),
+                            Expanded(
+                              child: PickedMealCard(
+                                imgPath: lunch[0].imgPath,
+                                meal: lunch[0].title,
+                              ),
+                            ),
+                            Expanded(
+                              child: PickedMealCard(
+                                imgPath: supper[0].imgPath,
+                                meal: supper[0].title,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 30),
+                        child: CustomButton(
+                          buttonLabel: 'Save',
+                          click: () {
+                            Provider.of<Meals>(context, listen: false)
+                                .removeMeals();
+                            Navigator.of(context).pop();
+                          },
+                          buttonWidth: double.infinity,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        }
+      },
+    );
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -66,7 +139,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                 'assets/bg.jpg',
                 fit: BoxFit.cover,
                 colorBlendMode: BlendMode.srcOver,
-                color: Colors.black.withOpacity(0.4),
+                color: Colors.black.withOpacity(0.3),
               ),
               title: const Text('Omnis Food', style: kBodyTextStyleWhite),
               centerTitle: false,
@@ -83,12 +156,6 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -214,6 +281,54 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class PickedMealCard extends StatelessWidget {
+  final String imgPath;
+  final String meal;
+  const PickedMealCard({
+    Key? key,
+    required this.imgPath,
+    required this.meal,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            decoration: BoxDecoration(
+              color: kGreyishColor,
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                  image: AssetImage(imgPath), fit: BoxFit.cover),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xff000000).withOpacity(0.12),
+                  blurRadius: 6.0,
+                  offset: const Offset(0.0, 3.0),
+                )
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(meal, style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
+              Text('1200 kCal',
+                  style: kBodyTextStyleGrey.copyWith(fontSize: 12)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
