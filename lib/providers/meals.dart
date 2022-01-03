@@ -84,6 +84,7 @@ class Meals with ChangeNotifier {
     return [..._meals];
   }
 
+  int pageNumber = 0;
   void selectMeal(String id) {
     var pickedMeal = _meals.firstWhere((meal) => meal.id == id);
 
@@ -94,6 +95,7 @@ class Meals with ChangeNotifier {
         selectedMeals.where((meal) => meal.supper == true).toList().length <=
             1) {
       pickedMeal.isSelected = true;
+      pageNumber++;
       selectedMeals.add(pickedMeal);
     }
 

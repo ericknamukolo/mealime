@@ -34,6 +34,7 @@ class MeaLime extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Packages()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
         theme: ThemeData(
