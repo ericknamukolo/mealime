@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/providers/auth.dart';
 import 'package:mealime/screens/personal_details_screen.dart';
 import 'package:mealime/screens/signup_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 class MobileVerificationScreen extends StatelessWidget {
   static const routeName = '/mobile-verification-screen';
@@ -12,6 +14,8 @@ class MobileVerificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final otp = Provider.of<Auth>(context, listen: false).otp;
+    int? _otpCode;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -55,11 +59,11 @@ class MobileVerificationScreen extends StatelessWidget {
                 children: [
                   const TextSpan(
                     text:
-                        'Enter the verification code you received on the number',
+                        'Enter the verification code you received on the number\n',
                     style: kBodyTextStyleGrey,
                   ),
                   TextSpan(
-                    text: ' +260962885743.',
+                    text: otp!.phoneNumber,
                     style: kBodyTextStyleGrey.copyWith(color: kPrimaryColor),
                   ),
                 ],
@@ -72,7 +76,7 @@ class MobileVerificationScreen extends StatelessWidget {
               appContext: context,
               length: 6,
               onChanged: (val) {
-                print(val);
+                _otpCode = int.parse(val);
               },
             ),
             const SizedBox(height: 10),
@@ -95,8 +99,44 @@ class MobileVerificationScreen extends StatelessWidget {
             const SizedBox(height: 15),
             CustomButton(
               buttonLabel: 'Verify',
-              click: () {
-                Navigator.pushNamed(context, SignUpScreen.routeName);
+              click: () async {
+                if (_otpCode == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(milliseconds: 2000),
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        'Enter the otp code',
+                        style: kBodyTextStyleGrey.copyWith(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                  return;
+                }
+                try {
+                  await Provider.of<Auth>(context, listen: false)
+                      .mobileVerification(_otpCode!);
+                  Navigator.pushNamed(context, SignUpScreen.routeName);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: const Duration(milliseconds: 2000),
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        '$_otpCode is an incorrect pin',
+                        style: kBodyTextStyleGrey.copyWith(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                }
               },
               buttonWidth: double.infinity,
             ),
