@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:mealime/providers/allergies.dart';
+import 'package:mealime/providers/auth.dart';
 import 'package:mealime/providers/groceries.dart';
 import 'package:mealime/providers/meals.dart';
 import 'package:mealime/providers/package_packs.dart';
@@ -32,6 +33,7 @@ class MeaLime extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Groceries()),
         ChangeNotifierProvider(create: (context) => Meals()),
         ChangeNotifierProvider(create: (context) => Packages()),
+        ChangeNotifierProvider(create: (context) => Auth()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

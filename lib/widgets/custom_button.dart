@@ -6,10 +6,12 @@ class CustomButton extends StatelessWidget {
   final String buttonLabel;
   final Function() click;
   final double? buttonWidth;
+  final bool? isLoading;
   const CustomButton({
     Key? key,
     required this.buttonLabel,
     required this.click,
+    this.isLoading = false,
     this.buttonWidth = 150,
   }) : super(key: key);
 
@@ -21,7 +23,7 @@ class CustomButton extends StatelessWidget {
         height: 50,
         width: buttonWidth,
         decoration: BoxDecoration(
-          color: kPrimaryColor,
+          color: isLoading! ? Colors.grey : kPrimaryColor,
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
@@ -33,7 +35,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            buttonLabel,
+            isLoading! ? 'Loading...' : buttonLabel,
             style: kBodyTextStyleWhite,
           ),
         ),

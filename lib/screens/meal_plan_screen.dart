@@ -58,6 +58,15 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
         var lunch = Provider.of<Meals>(context, listen: false).lunchMeal;
         var supper = Provider.of<Meals>(context, listen: false).supperMeal;
 
+        if (bf.isNotEmpty) {
+          _pageController.animateToPage(1,
+              duration: const Duration(seconds: 1), curve: Curves.decelerate);
+        }
+        if (lunch.isNotEmpty) {
+          _pageController.animateToPage(2,
+              duration: const Duration(seconds: 1), curve: Curves.decelerate);
+        }
+
         if (bf.isNotEmpty && lunch.isNotEmpty && supper.isNotEmpty) {
           showModalBottomSheet(
             enableDrag: false,

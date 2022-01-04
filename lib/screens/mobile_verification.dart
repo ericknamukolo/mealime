@@ -71,7 +71,9 @@ class MobileVerificationScreen extends StatelessWidget {
               textStyle: kBodyTextStyleBlack.copyWith(fontSize: 23),
               appContext: context,
               length: 6,
-              onChanged: (val) {},
+              onChanged: (val) {
+                print(val);
+              },
             ),
             const SizedBox(height: 10),
             Center(

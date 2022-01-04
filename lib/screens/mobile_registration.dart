@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
+import 'package:mealime/providers/auth.dart';
 import 'package:mealime/screens/mobile_verification.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:mealime/widgets/input_field.dart';
+import 'package:provider/provider.dart';
 
-class MobileRegistration extends StatelessWidget {
+class MobileRegistration extends StatefulWidget {
   static const routeName = '/mobile-registration-screen';
   const MobileRegistration({Key? key}) : super(key: key);
 
   @override
+  State<MobileRegistration> createState() => _MobileRegistrationState();
+}
+
+class _MobileRegistrationState extends State<MobileRegistration> {
+  bool _isLoading = false;
+  @override
   Widget build(BuildContext context) {
+    final TextEditingController _mobileNumber = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -54,16 +63,48 @@ class MobileRegistration extends StatelessWidget {
               style: kBodyTextStyleGrey,
             ),
             const SizedBox(height: 10),
-            const InputField(
-              hint: 'Mobile Number',
+            InputField(
+              label: 'Phone Number',
+              hint: 'e.g 0962885743',
+              type: TextInputType.number,
+              data: _mobileNumber,
             ),
             const SizedBox(height: 15),
             CustomButton(
+              isLoading: _isLoading,
               buttonLabel: 'Continue',
-              click: () {
-                Navigator.pushNamed(
-                    context, MobileVerificationScreen.routeName);
-              },
+              click: !_isLoading
+                  ? () async {
+                      try {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        await Provider.of<Auth>(context, listen: false)
+                            .mobileRegistration(_mobileNumber.text);
+
+                        Navigator.pushNamed(
+                            context, MobileVerificationScreen.routeName);
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(milliseconds: 2000),
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              'Please enter a valid number',
+                              style: kBodyTextStyleGrey.copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    }
+                  : () {},
               buttonWidth: double.infinity,
             ),
           ],

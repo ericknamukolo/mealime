@@ -3,9 +3,15 @@ import 'package:mealime/constants/constants.dart';
 
 class InputField extends StatelessWidget {
   final String hint;
+  final TextInputType type;
+  final String? label;
+  final TextEditingController? data;
   const InputField({
     Key? key,
     required this.hint,
+    required this.type,
+    this.data,
+    this.label,
   }) : super(key: key);
 
   @override
@@ -15,10 +21,12 @@ class InputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(hint, style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
+          Text(label ?? hint,
+              style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
           TextField(
-            style: kBodyTextStyleGrey,
-            keyboardType: TextInputType.number,
+            controller: data,
+            style: kBodyTextStyleBlack,
+            keyboardType: type,
             decoration: InputDecoration(
               alignLabelWithHint: true,
               border: InputBorder.none,

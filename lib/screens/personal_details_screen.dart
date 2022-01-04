@@ -11,6 +11,7 @@ import 'package:mealime/widgets/doctor_card.dart';
 import 'package:mealime/widgets/gender_card.dart';
 import 'package:mealime/widgets/goal_card.dart';
 import 'package:mealime/widgets/health_button.dart';
+import 'package:mealime/widgets/input_field.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
@@ -32,7 +33,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
   double _actualWeight = 50;
   double _actualHeight = 180;
   double _bmi = 18.5;
-  DateTime _dateOfBirth = DateTime(2000);
 
   @override
   Widget build(BuildContext context) {
@@ -253,52 +253,6 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
               BMICard(
                 bmi: _bmi,
                 status: bmiStatus(),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 5),
-                alignment: Alignment.centerLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Date of birth',
-                        style: kBodyTextStyleBlack.copyWith(fontSize: 12)),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      height: 50,
-                      width: double.infinity,
-                      color: kGreyishColor,
-                      // alignment: Alignment.centerLeft,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '${_dateOfBirth.day}/${_dateOfBirth.month}/${_dateOfBirth.year}',
-                            style: kBodyTextStylePrimary.copyWith(fontSize: 16),
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              DateTime? _newDate = await showDatePicker(
-                                context: context,
-                                initialDate: _dateOfBirth,
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2010),
-                              );
-                              if (_newDate != null) {
-                                setState(() {
-                                  _dateOfBirth = _newDate;
-                                });
-                              }
-                            },
-                            icon: const Icon(
-                              Icons.arrow_drop_down_circle_outlined,
-                              color: kPrimaryColor,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
               ),
               const Align(
                   alignment: Alignment.centerLeft,
