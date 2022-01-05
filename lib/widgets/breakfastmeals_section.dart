@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/models/meal.dart';

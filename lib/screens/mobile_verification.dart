@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/providers/auth.dart';
-import 'package:mealime/screens/personal_details_screen.dart';
 import 'package:mealime/screens/signup_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

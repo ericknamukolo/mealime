@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mealime/constants/colors.dart';
@@ -109,7 +111,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 30),
                         child: CustomButton(

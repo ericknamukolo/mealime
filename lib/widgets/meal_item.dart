@@ -1,8 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
-import 'package:mealime/providers/meals.dart';
-import 'package:provider/provider.dart';
 
 class MealItem extends StatelessWidget {
   final String id;

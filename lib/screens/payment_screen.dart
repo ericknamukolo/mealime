@@ -1,4 +1,3 @@
-import 'package:awesome_card/awesome_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
@@ -7,7 +6,6 @@ import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
-import 'package:mealime/widgets/input_field.dart';
 
 class PaymentScreen extends StatefulWidget {
   static const routeName = '/payment-screen';
@@ -78,7 +76,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 obscureCardCvv: true,
                 isHolderNameVisible: true,
                 onCreditCardWidgetChange:
-                    (CreditCardBrand) {}, //true when you want to show cvv(back) view
+                    (creditCardBrand) {}, //true when you want to show cvv(back) view
               ),
               CreditCardForm(
                 formKey: formKey,

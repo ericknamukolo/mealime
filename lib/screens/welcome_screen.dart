@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
 import 'package:mealime/screens/home_screen.dart';
 import 'package:mealime/screens/intro_screen.dart';
-import 'package:mealime/screens/meal_plan_screen.dart';
+import 'package:mealime/screens/sign_in_screen.dart';
 import 'package:mealime/widgets/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -21,8 +22,9 @@ class WelcomeScreen extends StatelessWidget {
               Navigator.pushNamed(context, HomeScreen.routeName);
             },
             child: Text(
-              'MeaLime',
-              style: kTitleTextStyle.copyWith(fontSize: 40),
+              'Omnis Food',
+              style:
+                  kTitleTextStyle.copyWith(fontSize: 30, color: kAccentColor),
             ),
           ),
           Column(
@@ -33,11 +35,16 @@ class WelcomeScreen extends StatelessWidget {
                   Navigator.pushNamed(context, IntroScreen.routeName);
                 },
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: Text(
-                  'Already a member? Sign in',
-                  style: kBodyTextStyleGrey,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(SignInScreen.routeName);
+                  },
+                  child: const Text(
+                    'Already a member? Sign in',
+                    style: kBodyTextStyleGrey,
+                  ),
                 ),
               ),
             ],

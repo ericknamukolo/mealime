@@ -14,6 +14,7 @@ import 'package:mealime/screens/mobile_verification.dart';
 import 'package:mealime/screens/payment_screen.dart';
 import 'package:mealime/screens/personal_details_screen.dart';
 import 'package:mealime/screens/mobile_registration.dart';
+import 'package:mealime/screens/sign_in_screen.dart';
 import 'package:mealime/screens/signup_screen.dart';
 import 'package:mealime/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,7 @@ class MeaLime extends StatelessWidget {
               const ChoosePackageScreen(),
           PaymentScreen.routeName: (context) => const PaymentScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
+          SignInScreen.routeName: (context) => const SignInScreen(),
         },
       ),
     );

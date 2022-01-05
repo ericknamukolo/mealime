@@ -13,7 +13,7 @@ class DoctorCard extends StatelessWidget {
       onTap: () {
         showModalBottomSheet(
           context: context,
-          builder: (context) => DoctorScreen(),
+          builder: (context) => const DoctorScreen(),
           isScrollControlled: true,
         );
       },

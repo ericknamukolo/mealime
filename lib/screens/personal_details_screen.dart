@@ -11,7 +11,6 @@ import 'package:mealime/widgets/doctor_card.dart';
 import 'package:mealime/widgets/gender_card.dart';
 import 'package:mealime/widgets/goal_card.dart';
 import 'package:mealime/widgets/health_button.dart';
-import 'package:mealime/widgets/input_field.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
