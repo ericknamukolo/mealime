@@ -53,12 +53,13 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
       return 'Breakfast';
     }
 
+    var bf = Provider.of<Meals>(context, listen: false).breakfastMeal;
+    var lunch = Provider.of<Meals>(context, listen: false).lunchMeal;
+    var supper = Provider.of<Meals>(context, listen: false).supperMeal;
+
     WidgetsBinding.instance!.addPostFrameCallback(
       (_) {
         // Add Your Code here.
-        var bf = Provider.of<Meals>(context, listen: false).breakfastMeal;
-        var lunch = Provider.of<Meals>(context, listen: false).lunchMeal;
-        var supper = Provider.of<Meals>(context, listen: false).supperMeal;
 
         if (bf.isNotEmpty) {
           _pageController.animateToPage(1,
@@ -135,6 +136,19 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
     );
 
     return Scaffold(
+      floatingActionButton:
+          (bf.isNotEmpty || lunch.isNotEmpty || supper.isNotEmpty)
+              ? FloatingActionButton(
+                  onPressed: () {
+                    Provider.of<Meals>(context, listen: false).removeMeals();
+                    _pageController.animateToPage(0,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.decelerate);
+                  },
+                  child: const Icon(MdiIcons.deleteEmpty),
+                  backgroundColor: kPrimaryColor,
+                )
+              : null,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

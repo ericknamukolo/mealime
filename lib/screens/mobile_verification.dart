@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:mealime/constants/colors.dart';
 import 'package:mealime/constants/constants.dart';
@@ -7,13 +9,28 @@ import 'package:mealime/widgets/custom_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
-class MobileVerificationScreen extends StatelessWidget {
+class MobileVerificationScreen extends StatefulWidget {
   static const routeName = '/mobile-verification-screen';
   const MobileVerificationScreen({Key? key}) : super(key: key);
 
   @override
+  State<MobileVerificationScreen> createState() =>
+      _MobileVerificationScreenState();
+}
+
+class _MobileVerificationScreenState extends State<MobileVerificationScreen> {
+  final TextEditingController _otp = TextEditingController();
+  bool _isLoading = false;
+  @override
+  void dispose() {
+    _otp.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final otp = Provider.of<Auth>(context, listen: false).otp;
+
     int? _otpCode;
     return Scaffold(
       appBar: AppBar(
@@ -70,6 +87,7 @@ class MobileVerificationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             PinCodeTextField(
+              controller: _otp,
               keyboardType: TextInputType.number,
               textStyle: kBodyTextStyleBlack.copyWith(fontSize: 23),
               appContext: context,
@@ -98,46 +116,55 @@ class MobileVerificationScreen extends StatelessWidget {
             const SizedBox(height: 15),
             CustomButton(
               buttonLabel: 'Verify',
-              click: () async {
-                if (_otpCode == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: const Duration(milliseconds: 2000),
-                      behavior: SnackBarBehavior.floating,
-                      content: Text(
-                        'Enter the otp code',
-                        style: kBodyTextStyleGrey.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  );
-                  return;
-                }
-                try {
-                  await Provider.of<Auth>(context, listen: false)
-                      .mobileVerification(_otpCode!);
-                  Navigator.pushNamed(context, SignUpScreen.routeName);
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      duration: const Duration(milliseconds: 2000),
-                      behavior: SnackBarBehavior.floating,
-                      content: Text(
-                        '$_otpCode is an incorrect pin',
-                        style: kBodyTextStyleGrey.copyWith(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              },
+              click: _isLoading
+                  ? () {}
+                  : () async {
+                      if (_otp.text == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(milliseconds: 2000),
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              'Enter the otp code',
+                              style: kBodyTextStyleGrey.copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                        return;
+                      }
+                      try {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        await Provider.of<Auth>(context, listen: false)
+                            .mobileVerification(int.parse(_otp.text));
+                        Navigator.pushNamed(context, SignUpScreen.routeName);
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            duration: const Duration(milliseconds: 2000),
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              '${_otp.text} is an incorrect pin',
+                              style: kBodyTextStyleGrey.copyWith(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    },
               buttonWidth: double.infinity,
+              isLoading: _isLoading,
             ),
           ],
         ),

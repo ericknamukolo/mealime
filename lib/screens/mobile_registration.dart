@@ -16,10 +16,18 @@ class MobileRegistration extends StatefulWidget {
 }
 
 class _MobileRegistrationState extends State<MobileRegistration> {
+  final TextEditingController _mobileNumber = TextEditingController();
+
   bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _mobileNumber.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _mobileNumber = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
