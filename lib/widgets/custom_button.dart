@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
         height: 50,
         width: buttonWidth,
         decoration: BoxDecoration(
-          color: isLoading! ? Colors.grey : kPrimaryColor,
+          color: isLoading! ? const Color(0xffB4B4B4) : kPrimaryColor,
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
@@ -34,10 +34,20 @@ class CustomButton extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(
-            isLoading! ? 'Loading...' : buttonLabel,
-            style: kBodyTextStyleWhite,
-          ),
+          child: isLoading!
+              ? Container(
+                  height: 40,
+                  width: 40,
+                  padding: const EdgeInsets.all(8.0),
+                  child: const CircularProgressIndicator(
+                    color: kAccentColor,
+                    strokeWidth: 2,
+                  ),
+                )
+              : Text(
+                  buttonLabel,
+                  style: kBodyTextStyleWhite,
+                ),
         ),
       ),
     );

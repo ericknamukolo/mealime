@@ -90,6 +90,7 @@ class _MealPlanScreenState extends State<MealPlanScreen> {
                       Container(
                         height: 160,
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: PickedMealCard(
@@ -327,7 +328,7 @@ class PickedMealCard extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            margin: const EdgeInsets.symmetric(vertical: 5),
             decoration: BoxDecoration(
               color: kGreyishColor,
               borderRadius: BorderRadius.circular(8),
